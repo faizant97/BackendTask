@@ -1,6 +1,7 @@
 package com.geoclass.backendtask.controller;
 
 import com.geoclass.backendtask.dto.CreateSectionDTO;
+import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.service.SectionService;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,13 @@ public class SectionController {
 
 
     @PostMapping(value = "/deleteSection", consumes = "application/json", produces = "application/json")
-    public String DeleteSection(@RequestBody CreateSectionDTO sectionDTO){
+    public String deleteSection(@RequestBody CreateSectionDTO sectionDTO){
         return sectionService.deleteSection(sectionDTO);
+    }
+
+    @PostMapping(value = "/updateSection", consumes = "application/json", produces = "application/json")
+    public String updateSection(@RequestBody UpdateSectionDTO updateSectionDTO){
+        return sectionService.updateSection(updateSectionDTO);
     }
 
 }
