@@ -1,8 +1,12 @@
 package com.geoclass.backendtask.service;
 
-import org.springframework.stereotype.Service;
+import com.geoclass.backendtask.dto.SectionDTO;
+import com.geoclass.backendtask.entities.sectionEntity;
 
-@Service
-public class sectionService {
+import java.util.List;
 
+
+public interface sectionService {
+
+ List<sectionEntity> getSection();
 }

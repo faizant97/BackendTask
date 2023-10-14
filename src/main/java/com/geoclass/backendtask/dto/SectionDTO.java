@@ -1,6 +1,6 @@
 package com.geoclass.backendtask.dto;
 
-public class sectionDTO {
+public class SectionDTO {
 
 
     private int id;

@@ -2,11 +2,13 @@ package com.geoclass.backendtask.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "section")
 public class sectionEntity {
 
@@ -14,7 +16,7 @@ public class sectionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "section_id")
     @Getter @Setter
-    private int id;
+    private int sectionId;
     @Column(name = "section_name")
     @Getter @Setter
     private String sectionName;
