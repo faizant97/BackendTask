@@ -4,6 +4,7 @@ package com.geoclass.backendtask.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Getter
 @Entity
 @Data
 @NoArgsConstructor
@@ -15,10 +16,10 @@ public class SectionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "section_id")
-    @Getter @Setter
+    @Setter
     private int sectionId;
     @Column(name = "section_name")
-    @Getter @Setter
+    @Setter
     private String sectionName;
 
 
