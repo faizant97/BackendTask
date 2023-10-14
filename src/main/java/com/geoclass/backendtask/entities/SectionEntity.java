@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "section")
-public class sectionEntity {
+public class SectionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
