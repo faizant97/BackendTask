@@ -7,5 +7,5 @@ import lombok.Data;
 @Data
 public class CreateSectionDTO {
 
-    String name;
+   private String name;
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class UpdateSectionDTO {
 
-    String existingSectionName;
-    String updatedSectionName;
+    private String existingSectionName;
+    private String updatedSectionName;
 }
