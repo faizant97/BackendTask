@@ -15,7 +15,7 @@ import java.util.List;
 public class sectionController {
     @Autowired
     private sectionService sectionService;
-
+//testing new branch
     @GetMapping ("/getAllSections")
     public List<sectionEntity> getListOfSection(){
         List<sectionEntity> sectionEntityList;
