@@ -16,10 +16,10 @@ public class SectionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "section_id")
-    @Setter
+    @Setter @Getter
     private int sectionId;
     @Column(name = "section_name")
-    @Setter
+    @Setter @Getter
     private String sectionName;
 
 
