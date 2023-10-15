@@ -39,5 +39,7 @@ public class GeologicalClassController {
         return geologicalClassService.updateGeologicalClass(updateGeologicalClassDTO);
     }
 
+    
+
 
 }
