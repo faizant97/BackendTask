@@ -38,4 +38,6 @@ public class GeologicalClassController {
     public String updateGeologicalClass(@RequestBody UpdateGeologicalClassDTO updateGeologicalClassDTO){
         return geologicalClassService.updateGeologicalClass(updateGeologicalClassDTO);
     }
+
+
 }

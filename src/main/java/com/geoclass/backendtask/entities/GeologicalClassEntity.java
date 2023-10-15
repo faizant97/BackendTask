@@ -1,17 +1,21 @@
 package com.geoclass.backendtask.entities;
 
+import com.fasterxml.jackson.annotation.*;
 import com.geoclass.backendtask.dto.CreateSectionDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Table(name = "geological_class")
-
 public class GeologicalClassEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +28,13 @@ public class GeologicalClassEntity {
     @Column(name = "class_code")
     @Setter @Getter
     private String classCode;
-//    @Column(name = "section_id")
-//    @Setter
-//    @Getter
-//    private int sectionId;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "section_id")
-//    private SectionEntity sectionEntity;
+
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "geologicalClass")
+    private List<SectionEntity> section = new ArrayList<>();
+
+
+
 }
 

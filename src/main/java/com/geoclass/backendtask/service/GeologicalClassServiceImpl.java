@@ -3,9 +3,7 @@ package com.geoclass.backendtask.service;
 import com.geoclass.backendtask.dto.CreateGeologicalClassDTO;
 import com.geoclass.backendtask.dto.UpdateGeologicalClassDTO;
 import com.geoclass.backendtask.entities.GeologicalClassEntity;
-import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.repositories.GeologicalClassRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +14,10 @@ public class GeologicalClassServiceImpl implements GeologicalClassService {
 
     private final GeologicalClassRepository geologicalClassRepository;
 
+
     public GeologicalClassServiceImpl(GeologicalClassRepository geologicalClassRepository) {
         this.geologicalClassRepository = geologicalClassRepository;
+
     }
 
     @Override
@@ -32,24 +32,24 @@ public class GeologicalClassServiceImpl implements GeologicalClassService {
     @Override
     public  GeologicalClassEntity createGeologicalClass(CreateGeologicalClassDTO createGeologicalClassDTO){
         GeologicalClassEntity geologicalClassEntity = new GeologicalClassEntity();
-        if(!createGeologicalClassDTO.getName().isEmpty()) {
-            geologicalClassEntity.setClassName(createGeologicalClassDTO.getName());
+
+        if(!createGeologicalClassDTO.getClassName().isEmpty()) {
+            geologicalClassEntity.setClassName(createGeologicalClassDTO.getClassName());
             geologicalClassEntity.setClassCode(createGeologicalClassDTO.getClassCode());
             geologicalClassEntity = geologicalClassRepository.save(geologicalClassEntity);
-            return geologicalClassEntity;
         }
         else {
             geologicalClassEntity.setClassCode("Please Write a value");
             geologicalClassEntity.setClassName("Please Write a value");
-            return geologicalClassEntity;
         }
+        return geologicalClassEntity;
     }
 
     @Override
     public String deleteGeologicalClass(CreateGeologicalClassDTO createGeologicalClassDTO){
         GeologicalClassEntity geologicalClassDeleted;
-        if(!createGeologicalClassDTO.getName().isEmpty() || !createGeologicalClassDTO.getClassCode().isEmpty() ) {
-            Optional<GeologicalClassEntity> result = search(createGeologicalClassDTO.getName(), createGeologicalClassDTO.getClassCode());
+        if(!createGeologicalClassDTO.getClassName().isEmpty() || !createGeologicalClassDTO.getClassCode().isEmpty() ) {
+            Optional<GeologicalClassEntity> result = search(createGeologicalClassDTO.getClassName(), createGeologicalClassDTO.getClassCode());
             if(result.isPresent()){
                 geologicalClassDeleted = result.get();
                 geologicalClassRepository.delete(geologicalClassDeleted);

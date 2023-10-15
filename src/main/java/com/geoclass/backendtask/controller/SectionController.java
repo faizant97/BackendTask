@@ -5,7 +5,6 @@ import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.service.SectionService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,13 +18,12 @@ public class SectionController {
 
     @GetMapping ("/getAllSections")
     public List<SectionEntity> getListOfSection(){
-        List<SectionEntity> sectionEntityList;
-        sectionEntityList = sectionService.getSection();
-        return sectionEntityList;
+
+        return sectionService.getSection();
     }
 
 
-    @PostMapping(value = "/createSection", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/createSection")
     public SectionEntity createSection(@RequestBody CreateSectionDTO sectionDTO){
         return sectionService.createSection(sectionDTO);
     }
