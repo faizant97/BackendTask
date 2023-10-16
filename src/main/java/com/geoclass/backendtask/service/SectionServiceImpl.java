@@ -5,8 +5,8 @@ import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.repositories.SectionRepository;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 public class SectionServiceImpl implements SectionService {
@@ -22,7 +22,7 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public List<SectionEntity> getSection() {
 
-        List<SectionEntity> sectionEntityList;
+        List<SectionEntity> sectionEntityList ;
         sectionEntityList = sectionRepository.findAll();
         return sectionEntityList;
 
@@ -33,13 +33,13 @@ public class SectionServiceImpl implements SectionService {
         SectionEntity sectionEntity = new SectionEntity();
         if(!sectionDTO.getName().isEmpty()) {
             sectionEntity.setSectionName(sectionDTO.getName());
+            sectionEntity.setGeologicalClass(sectionDTO.getGeologicalClassEntityList());
             sectionEntity = sectionRepository.save(sectionEntity);
-            return sectionEntity;
         }
         else {
             sectionEntity.setSectionName("Please Write a value");
-            return sectionEntity;
         }
+        return sectionEntity;
     }
 
 
@@ -65,6 +65,7 @@ public class SectionServiceImpl implements SectionService {
             if(result.isPresent()){
                 sectionToBeUpdated = result.get();
                 sectionToBeUpdated.setSectionName(updateSectionDTO.getUpdatedSectionName());
+
                 sectionRepository.save(sectionToBeUpdated);
                 return updateSectionDTO.getExistingSectionName() + " is updated to " + updateSectionDTO.getUpdatedSectionName();
             }
