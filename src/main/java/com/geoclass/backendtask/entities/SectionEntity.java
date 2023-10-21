@@ -30,7 +30,7 @@ public class SectionEntity {
     @Setter @Getter
     private String sectionName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "assigned_section",  joinColumns = @JoinColumn(name="section_id"),
             inverseJoinColumns = @JoinColumn(name = "class_id"))
     List<GeologicalClassEntity> geologicalClass = new ArrayList<>();
