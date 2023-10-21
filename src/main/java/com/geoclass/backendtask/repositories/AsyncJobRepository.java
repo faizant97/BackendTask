@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface AsyncJobRepository extends JpaRepository<AsyncJobEntity, Long> {
     @Query(value = "SELECT * FROM async_job WHERE job_id = ?1", nativeQuery = true)
-    Optional<AsyncJobEntity> findByJobId(Long emailAddress);
+    Optional<AsyncJobEntity> findByJobId(Long jobId);
 }

@@ -106,4 +106,14 @@ public class ImportServiceImpl implements ImportService{
     }
 
 
+    public String getImportStatus(Long jobId) {
+        Optional<AsyncJobEntity> asyncJobEntity = asyncJobRepository.findByJobId(jobId);
+        if (asyncJobEntity.isPresent()) {
+            return asyncJobEntity.get().getStatus();
+        } else {
+            return "Job ID not found";
+        }
+    }
+
+
 }

@@ -5,11 +5,13 @@ import com.geoclass.backendtask.dto.CreateGeologicalClassDTO;
 import com.geoclass.backendtask.dto.UpdateGeologicalClassDTO;
 import com.geoclass.backendtask.entities.GeologicalClassEntity;
 import com.geoclass.backendtask.service.GeologicalClassService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@EnableWebSecurity
 @RequestMapping("/geologicalClass")
 public class GeologicalClassController {
     private final GeologicalClassService geologicalClassService;

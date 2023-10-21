@@ -4,10 +4,12 @@ import com.geoclass.backendtask.dto.CreateSectionDTO;
 import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.service.SectionService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@EnableWebSecurity
 @RequestMapping("/sections")
 public class SectionController {
     private final SectionService sectionService;

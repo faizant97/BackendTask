@@ -9,4 +9,6 @@ public interface ImportService {
 //    String getImportStatus(Long id);
 
     CompletableFuture<Long> startImport(MultipartFile file);
+
+    String getImportStatus(Long jobId);
 }
