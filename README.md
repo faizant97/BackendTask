@@ -1,6 +1,6 @@
 # Backend Assignment
 
-Geological class
+It was through task. I enjoyed working on it. :) 
 
 ## Tech-Stack
 
