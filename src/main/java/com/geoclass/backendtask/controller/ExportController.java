@@ -2,6 +2,7 @@ package com.geoclass.backendtask.controller;
 
 import com.geoclass.backendtask.service.ExportService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
+@EnableWebSecurity
 @RequestMapping("/export")
 public class ExportController {
 

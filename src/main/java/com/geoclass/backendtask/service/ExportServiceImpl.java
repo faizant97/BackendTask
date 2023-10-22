@@ -40,7 +40,7 @@ public class ExportServiceImpl implements ExportService {
     }
 
     @Async
-    @Transactional
+
     public CompletableFuture<Long> exportXLSFile() throws IOException {
         String fileName;
         List<SectionEntity> sections = sectionRepository.findAll();
@@ -85,7 +85,7 @@ public class ExportServiceImpl implements ExportService {
                    Cell sectionNameCell = dataRow.createCell(0);
                    sectionNameCell.setCellValue(section.getSectionName());
 
-                   // Create an array to store class names and class codes
+                   // Array to store class names and class codes
                    String[] classNames = new String[classNameCount];
                    String[] classCodes = new String[classNameCount];
 
@@ -117,20 +117,14 @@ public class ExportServiceImpl implements ExportService {
                    workbook.write(fos);
                }
            } catch (IOException e){
-               asyncJob.setStatus(StatusEnum.ERROR.getDisplayStatus());
-               asyncJobRepository.save(asyncJob);
+               AsyncJobEntity asyncJobErrorObject = ImportServiceImpl.asyncMethod(asyncId, asyncJobRepository);
+               asyncJobErrorObject.setStatus(StatusEnum.ERROR.getDisplayStatus());
+               asyncJobRepository.save(asyncJobErrorObject);
                throw new IOException(e);
            }
 
 
-        List<AsyncJobEntity> asyncJobList = asyncJobRepository.findAll();
-           AsyncJobEntity asyncJobDoneObject = new AsyncJobEntity();
-           for(AsyncJobEntity job: asyncJobList){
-            if(job.getJobId().equals(asyncId)){
-                asyncJobDoneObject = job;
-            }
-        }
-        asyncJobDoneObject.setStatus(StatusEnum.DONE.getDisplayStatus());
+        AsyncJobEntity asyncJobDoneObject = ImportServiceImpl.asyncMethod(asyncId, asyncJobRepository);
         asyncJobDoneObject.setFileName(fileName);
         asyncJobRepository.save(asyncJobDoneObject);
         return CompletableFuture.completedFuture(asyncId);

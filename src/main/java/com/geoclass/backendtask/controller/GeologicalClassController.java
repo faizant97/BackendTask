@@ -5,11 +5,13 @@ import com.geoclass.backendtask.dto.CreateGeologicalClassDTO;
 import com.geoclass.backendtask.dto.UpdateGeologicalClassDTO;
 import com.geoclass.backendtask.entities.GeologicalClassEntity;
 import com.geoclass.backendtask.service.GeologicalClassService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@EnableWebSecurity
 @RequestMapping("/geologicalClass")
 public class GeologicalClassController {
     private final GeologicalClassService geologicalClassService;
@@ -24,17 +26,17 @@ public class GeologicalClassController {
         return geologicalClassEntityList;
     }
 
-    @PostMapping(value = "/createGeologicalClass", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/createGeologicalClass")
     public GeologicalClassEntity createGeologicalClass(@RequestBody CreateGeologicalClassDTO createGeologicalClassDTO){
         return geologicalClassService.createGeologicalClass(createGeologicalClassDTO);
     }
 
-    @PostMapping(value = "/deleteGeologicalClass", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/deleteGeologicalClass")
     public String deleteGeologicalClass(@RequestBody CreateGeologicalClassDTO createGeologicalClassDTO){
         return geologicalClassService.deleteGeologicalClass(createGeologicalClassDTO);
     }
 
-    @PostMapping(value = "/updateGeologicalClass", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/updateGeologicalClass")
     public String updateGeologicalClass(@RequestBody UpdateGeologicalClassDTO updateGeologicalClassDTO){
         return geologicalClassService.updateGeologicalClass(updateGeologicalClassDTO);
     }

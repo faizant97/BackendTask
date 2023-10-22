@@ -1,6 +1,8 @@
 package com.geoclass.backendtask.service;
 
 import com.geoclass.backendtask.dto.CreateSectionDTO;
+import com.geoclass.backendtask.dto.DeleteSectionDTO;
+import com.geoclass.backendtask.dto.SectionResponseDTO;
 import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.repositories.SectionRepository;
@@ -29,8 +31,9 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public SectionEntity createSection(CreateSectionDTO sectionDTO){
+    public SectionResponseDTO createSection(CreateSectionDTO sectionDTO){
         SectionEntity sectionEntity = new SectionEntity();
+        SectionResponseDTO sectionResponseDTO = new SectionResponseDTO();
         if(!sectionDTO.getName().isEmpty()) {
             sectionEntity.setSectionName(sectionDTO.getName());
             sectionEntity.setGeologicalClass(sectionDTO.getGeologicalClassEntityList());
@@ -39,22 +42,32 @@ public class SectionServiceImpl implements SectionService {
         else {
             sectionEntity.setSectionName("Please Write a value");
         }
-        return sectionEntity;
+
+        sectionResponseDTO.setSectionName(sectionEntity.getSectionName());
+        sectionResponseDTO.setGeologicalClassEntitySet(sectionEntity.getGeologicalClass());
+        return sectionResponseDTO;
     }
 
 
     @Override
-    public String deleteSection(CreateSectionDTO createSectionDTO){
-       SectionEntity sectionToBeDeleted;
+    public DeleteSectionDTO deleteSection(CreateSectionDTO createSectionDTO){
+       DeleteSectionDTO deleteSectionDTO = new DeleteSectionDTO();
+        SectionEntity sectionToBeDeleted;
         if(!createSectionDTO.getName().isEmpty()) {
             Optional<SectionEntity> result = search(createSectionDTO.getName());
             if(result.isPresent()){
                 sectionToBeDeleted = result.get();
                 sectionRepository.delete(sectionToBeDeleted);
-                return  sectionToBeDeleted.getSectionName() + " is deleted!";
+                deleteSectionDTO.setSectionName(sectionToBeDeleted.getSectionName());
+                deleteSectionDTO.setGeologicalClass(sectionToBeDeleted.getGeologicalClass());
+                deleteSectionDTO.setMessage("DELETED");
+                return  deleteSectionDTO;
+                       // sectionToBeDeleted.getSectionName() + " is deleted!";
             }
         }
-            return "Section not found!";
+        deleteSectionDTO.setMessage("Section not found!");
+        return deleteSectionDTO;
+
     }
 
     @Override

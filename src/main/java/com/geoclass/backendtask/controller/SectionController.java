@@ -1,13 +1,17 @@
 package com.geoclass.backendtask.controller;
 
 import com.geoclass.backendtask.dto.CreateSectionDTO;
+import com.geoclass.backendtask.dto.DeleteSectionDTO;
+import com.geoclass.backendtask.dto.SectionResponseDTO;
 import com.geoclass.backendtask.dto.UpdateSectionDTO;
 import com.geoclass.backendtask.entities.SectionEntity;
 import com.geoclass.backendtask.service.SectionService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@EnableWebSecurity
 @RequestMapping("/sections")
 public class SectionController {
     private final SectionService sectionService;
@@ -24,13 +28,13 @@ public class SectionController {
 
 
     @PostMapping(value = "/createSection")
-    public SectionEntity createSection(@RequestBody CreateSectionDTO sectionDTO){
+    public SectionResponseDTO createSection(@RequestBody CreateSectionDTO sectionDTO){
         return sectionService.createSection(sectionDTO);
     }
 
 
     @PostMapping(value = "/deleteSection", consumes = "application/json", produces = "application/json")
-    public String deleteSection(@RequestBody CreateSectionDTO sectionDTO){
+    public DeleteSectionDTO deleteSection(@RequestBody CreateSectionDTO sectionDTO){
         return sectionService.deleteSection(sectionDTO);
     }
 

@@ -7,4 +7,5 @@ public class UpdateSectionDTO {
 
     private String existingSectionName;
     private String updatedSectionName;
+
 }
