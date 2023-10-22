@@ -1,0 +1,20 @@
+create table async_job(
+id bigint not null AUTO_INCREMENT,
+job_id bigint,
+status varchar(50),
+Primary key(id)
+);
+
+
+Create table geological_class (
+class_id int not null AUTO_INCREMENT,
+class_name varchar(50),
+class_code varchar (12),
+primary key(class_id)
+);
+
+Create table section (
+section_id int not null AUTO_INCREMENT,
+section_name varchar(50),
+Primary key(section_id)
+);
